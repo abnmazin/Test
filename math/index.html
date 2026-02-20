@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قسم الرياضيات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #ecf0f1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: -40px auto 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .placeholder-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .placeholder-card {
+            flex: 1 1 280px;
+            background: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            transition: transform 0.3s ease;
+        }
+
+        .placeholder-card:hover {
+            transform: translateY(-5px);
+            border-color: #3498db;
+        }
+
+        .placeholder-card h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .placeholder-card p {
+            color: #777;
+            font-size: 0.95rem;
+        }
+
+        .back-btn {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 12px 35px;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            .placeholder-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>قسم الرياضيات</h1>
+        <p>استكشف مواضيع الرياضيات المتنوعة من الجبر والهندسة إلى التفاضل والتكامل والإحصاء.</p>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">الدروس والمحتوى</h2>
+        <div class="placeholder-grid">
+
+            <div class="placeholder-card">
+                <h3>الجبر</h3>
+                <p>دروس وشروحات في الجبر الأساسي والمتقدم. قريباً...</p>
+            </div>
+
+            <div class="placeholder-card">
+                <h3>الهندسة</h3>
+                <p>مسائل وحلول في الهندسة الإقليدية والفراغية. قريباً...</p>
+            </div>
+
+            <div class="placeholder-card">
+                <h3>التفاضل والتكامل</h3>
+                <p>شرح مفاهيم الحساب التفاضلي والتكاملي بأسلوب مبسط. قريباً...</p>
+            </div>
+
+        </div>
+
+        <a href="/" class="back-btn">العودة إلى الصفحة الرئيسية</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 فلان الفلاني. جميع الحقوق محفوظة.</p>
+    </footer>
+
+</body>
+</html>
