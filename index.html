@@ -1,159 +1,825 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقعي الشخصي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* إعدادات عامة */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Abn Mazin — Telegram: @FFFF_6 — Channel: @AnyDesiry" />
+  <title>Abn Mazin — Profile</title>
 
-        body {
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-        }
+  <style>
+    /* ============ Design Tokens ============ */
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1020;
+      --card:rgba(255,255,255,.08);
+      --card2:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.14);
+      --text:#EAF0FF;
+      --muted:rgba(234,240,255,.75);
+      --muted2:rgba(234,240,255,.55);
 
-        /* تنسيق الواجهة الرئيسية (Hero Section) */
-        .hero {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-        }
+      --a:#7C5CFF;
+      --b:#23D5FF;
+      --c:#00E6A7;
+      --danger:#FF4D6D;
+      --warn:#FFC857;
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
+      --shadow: 0 18px 55px rgba(0,0,0,.45);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
 
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            color: #ecf0f1;
-        }
+      --ring: 0 0 0 3px rgba(35,213,255,.18);
+    }
+    :root[data-theme="light"]{
+      --bg0:#F4F6FF;
+      --bg1:#FFFFFF;
+      --card:rgba(10,14,30,.06);
+      --card2:rgba(10,14,30,.04);
+      --stroke:rgba(10,14,30,.12);
+      --text:#0A0E1E;
+      --muted:rgba(10,14,30,.72);
+      --muted2:rgba(10,14,30,.55);
+      --shadow: 0 18px 55px rgba(10,14,30,.12);
+      --shadow2: 0 10px 30px rgba(10,14,30,.10);
+      --ring: 0 0 0 3px rgba(124,92,255,.16);
+    }
 
-        /* تنسيق قسم المحتوى والتواصل */
-        .container {
-            max-width: 1000px;
-            margin: -40px auto 50px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
+    /* ============ Base ============ */
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 10% 10%, rgba(124,92,255,.22), transparent 55%),
+                  radial-gradient(900px 700px at 90% 20%, rgba(35,213,255,.18), transparent 60%),
+                  radial-gradient(900px 650px at 60% 95%, rgba(0,230,167,.16), transparent 60%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    a{ color:inherit; }
+    .container{
+      width:min(1120px, calc(100% - 40px));
+      margin:0 auto;
+    }
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
 
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
+    /* ============ Animated Background Orbs ============ */
+    .orbs{
+      position:fixed; inset:0;
+      pointer-events:none;
+      filter: blur(35px);
+      opacity:.75;
+      z-index:-1;
+    }
+    .orb{
+      position:absolute;
+      width:420px; height:420px;
+      border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(124,92,255,.85), transparent 55%),
+                  radial-gradient(circle at 70% 70%, rgba(35,213,255,.65), transparent 58%);
+      animation: float 10s ease-in-out infinite;
+      mix-blend-mode: screen;
+    }
+    .orb:nth-child(1){ left:-90px; top:70px; animation-duration: 12s; }
+    .orb:nth-child(2){
+      right:-140px; top:140px;
+      width:520px; height:520px;
+      background: radial-gradient(circle at 30% 30%, rgba(35,213,255,.85), transparent 55%),
+                  radial-gradient(circle at 70% 70%, rgba(0,230,167,.55), transparent 58%);
+      animation-duration: 14s;
+    }
+    .orb:nth-child(3){
+      left:30%; bottom:-220px;
+      width:560px; height:560px;
+      background: radial-gradient(circle at 30% 30%, rgba(0,230,167,.7), transparent 55%),
+                  radial-gradient(circle at 70% 70%, rgba(124,92,255,.55), transparent 58%);
+      animation-duration: 16s;
+    }
+    @keyframes float{
+      0%,100%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(20px,-18px) scale(1.04); }
+    }
 
-        /* شبكة معلومات التواصل */
-        .contact-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
+    /* ============ Top Nav ============ */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,0));
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    :root[data-theme="light"] .topbar{
+      background: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,0));
+      border-bottom: 1px solid rgba(10,14,30,.07);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; text-decoration:none;
+    }
+    .logo{
+      width:36px; height:36px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(124,92,255,1), rgba(35,213,255,1));
+      box-shadow: 0 10px 30px rgba(124,92,255,.25);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-30%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.75), transparent 55%);
+      transform: rotate(20deg);
+    }
+    .brand .title{
+      display:flex; flex-direction:column; line-height:1.1;
+    }
+    .brand .title strong{ font-size:14px; letter-spacing:.2px; }
+    .brand .title span{ font-size:12px; color:var(--muted2); }
 
-        .contact-card {
-            flex: 1 1 300px;
-            background: #f9f9f9;
-            padding: 20px;
-            text-align: center;
-            border-radius: 8px;
-            border: 1px solid #eee;
-            transition: transform 0.3s ease;
-        }
+    .navlinks{
+      display:flex; gap: 10px; flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-end;
+    }
+    .chip{
+      text-decoration:none;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size: 13px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .chip:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); color:var(--text); }
+    .chip:focus{ outline:none; box-shadow: var(--ring); }
 
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: #3498db;
-        }
+    .btn{
+      cursor:pointer;
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
+      transition: transform .12s ease, background .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn:focus{ outline:none; box-shadow: var(--ring); }
 
-        .contact-card h3 {
-            color: #3498db;
-            margin-bottom: 10px;
-        }
+    .btn.primary{
+      border-color: rgba(35,213,255,.35);
+      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(35,213,255,.22));
+    }
 
-        .contact-card a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
+    /* ============ Sections ============ */
+    section{ padding: 34px 0; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){
+      .grid{ grid-template-columns: 1fr; }
+    }
 
-        .contact-card a:hover {
-            color: #e74c3c;
-        }
+    .card{
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card.pad{ padding: 22px; }
 
-        /* تنسيق التذييل */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #2c3e50;
-            color: white;
-            margin-top: auto;
-        }
+    .hero{
+      position:relative;
+    }
+    .hero-head{
+      display:flex;
+      gap: 16px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .headline{
+      max-width: 720px;
+    }
+    .headline h1{
+      margin:0;
+      font-size: clamp(28px, 3.4vw, 44px);
+      letter-spacing: -0.6px;
+      line-height: 1.05;
+    }
+    .headline p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+    .badge-row{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 14px;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--stroke);
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(135deg, var(--a), var(--b));
+      box-shadow: 0 8px 18px rgba(35,213,255,.18);
+    }
 
-        /* التجاوب مع الشاشات الصغيرة (الهواتف) */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 60px 20px;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .container {
-                margin: 20px;
-                padding: 20px;
-            }
-            .contact-card {
-                flex: 1 1 100%;
-            }
-        }
-    </style>
+    .hero-actions{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 16px;
+    }
+
+    /* Right column widgets */
+    .widget-title{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      margin-bottom: 12px;
+    }
+    .widget-title h3{ margin:0; font-size: 14px; letter-spacing:.2px; }
+    .widget-title span{ font-size: 12px; color: var(--muted2); }
+
+    .kv{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .kv .item{
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+    }
+    .kv .k{
+      font-size: 12px;
+      color: var(--muted2);
+      margin-bottom: 6px;
+    }
+    .kv .v{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      font-size: 14px;
+    }
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+
+    /* Skills */
+    .skills{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    @media (max-width: 720px){ .skills{ grid-template-columns:1fr; } }
+    .skill{
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+    }
+    .skill .top{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .bar{
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.10);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .fill{
+      height:100%;
+      width: 50%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(124,92,255,1), rgba(35,213,255,1), rgba(0,230,167,1));
+      box-shadow: 0 10px 30px rgba(35,213,255,.2);
+      transform-origin: left center;
+      animation: grow .9s ease both;
+    }
+    @keyframes grow { from { transform: scaleX(.3); } to { transform: scaleX(1); } }
+
+    /* Projects */
+    .projects{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 980px){ .projects{ grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 680px){ .projects{ grid-template-columns: 1fr; } }
+    .project{
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow2);
+      position:relative;
+      overflow:hidden;
+    }
+    .project:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(600px 200px at 20% 0%, rgba(35,213,255,.18), transparent 50%),
+                  radial-gradient(500px 220px at 90% 100%, rgba(124,92,255,.16), transparent 55%);
+      pointer-events:none;
+    }
+    .project h4{ margin:0 0 8px; position:relative; }
+    .project p{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.55; position:relative; }
+    .tags{
+      display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; position:relative;
+    }
+    .tag{
+      font-size: 11px;
+      color: var(--muted);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      padding: 6px 8px;
+      border-radius: 999px;
+    }
+
+    /* Contact */
+    .contact-row{
+      display:flex; gap: 10px; flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    .input{
+      width:100%;
+      padding: 11px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      outline:none;
+    }
+    .input:focus{ box-shadow: var(--ring); }
+    textarea.input{ min-height: 110px; resize: vertical; }
+
+    /* Footer */
+    footer{
+      padding: 24px 0 40px;
+      color: var(--muted2);
+      font-size: 12px;
+      text-align:center;
+    }
+
+    /* Toast */
+    .toast{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      width: min(360px, calc(100% - 32px));
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 12px 12px;
+      display:none;
+      z-index: 999;
+    }
+    .toast.show{ display:block; animation: pop .18s ease-out; }
+    @keyframes pop { from{ transform: translateY(10px); opacity:.6; } to{ transform: translateY(0); opacity:1; } }
+    .toast .t{ font-size: 13px; }
+    .toast .s{ font-size: 12px; color: var(--muted2); margin-top: 2px; }
+  </style>
 </head>
+
 <body>
+  <div class="orbs" aria-hidden="true">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+  </div>
 
-    <header class="hero">
-        <h1>فلان الفلاني</h1>
-        <p>مرحباً بك في موقعي الشخصي. أنا مهتم بمجال [اكتب مجالك هنا، مثلاً: تطوير الويب / التصميم / الكتابة] وأسعى دائماً لتقديم الأفضل.</p>
-    </header>
+  <header class="topbar">
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="#home">
+          <div class="logo" aria-hidden="true"></div>
+          <div class="title">
+            <strong id="brandName">Abn Mazin</strong>
+            <span id="brandSub">Telegram profile & links</span>
+          </div>
+        </a>
 
-    <main class="container">
-        <h2 class="section-title">معلومات التواصل</h2>
-        <div class="contact-grid">
-            
-            <div class="contact-card">
-                <h3>البريد الإلكتروني</h3>
-                <p><a href="mailto:your.email@example.com">your.email@example.com</a></p>
-            </div>
+        <div class="navlinks">
+          <a class="chip" href="#about" id="navAbout">About</a>
+          <a class="chip" href="#skills" id="navSkills">Skills</a>
+          <a class="chip" href="#projects" id="navProjects">Projects</a>
+          <a class="chip" href="#contact" id="navContact">Contact</a>
 
-            <div class="contact-card">
-                <h3>رقم الهاتف</h3>
-                <p><a href="tel:+964123456789">+964 123 456 789</a></p>
-            </div>
-
-            <div class="contact-card">
-                <h3>حساباتي المهنية</h3>
-                <p><a href="#" target="_blank">رابط حسابي على LinkedIn</a></p>
-            </div>
-
+          <button class="btn" id="toggleTheme" type="button" title="Toggle theme">Theme</button>
+          <button class="btn" id="toggleLang" type="button" title="Toggle language">EN/AR</button>
+          <a class="btn primary" href="https://t.me/FFFF_6" target="_blank" rel="noopener" id="ctaTelegram">Telegram</a>
         </div>
-    </main>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="home">
+    <!-- HERO -->
+    <section>
+      <div class="grid">
+        <div class="card pad hero">
+          <div class="hero-head">
+            <div class="headline">
+              <h1 id="heroTitle">Abn Mazin</h1>
+              <p id="heroDesc">
+                A high‑contrast, modern profile page with interactive sections, quick actions, and polished visuals.
+                Use the buttons to open Telegram, copy usernames, and switch language/theme.
+              </p>
+
+              <div class="badge-row">
+                <span class="badge"><span class="dot"></span><span id="badge1">Online presence</span></span>
+                <span class="badge"><span class="dot"></span><span id="badge2">Fast contact</span></span>
+                <span class="badge"><span class="dot"></span><span id="badge3">Single‑file</span></span>
+              </div>
+
+              <div class="hero-actions">
+                <a class="btn primary" href="https://t.me/FFFF_6" target="_blank" rel="noopener" id="btnMessage">Message @FFFF_6</a>
+                <a class="btn" href="https://t.me/AnyDesiry" target="_blank" rel="noopener" id="btnChannel">Open @AnyDesiry</a>
+                <button class="btn" type="button" id="btnCopyAll">Copy all info</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card pad">
+          <div class="widget-title">
+            <h3 id="quickTitle">Quick Info</h3>
+            <span id="quickHint">Tap to copy</span>
+          </div>
+
+          <div class="kv">
+            <div class="item">
+              <div class="k" id="kName">Name</div>
+              <div class="v">
+                <span id="vName">Abn Mazin</span>
+                <button class="btn" type="button" data-copy="Abn Mazin">Copy</button>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="k" id="kUser">Telegram</div>
+              <div class="v">
+                <span class="mono" id="vUser">@FFFF_6</span>
+                <button class="btn" type="button" data-copy="@FFFF_6">Copy</button>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="k" id="kChan">Telegram Channel</div>
+              <div class="v">
+                <span class="mono" id="vChan">@AnyDesiry</span>
+                <button class="btn" type="button" data-copy="@AnyDesiry">Copy</button>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="k" id="kUpdated">Updated</div>
+              <div class="v">
+                <span class="mono" id="vUpdated">2026-02-20</span>
+                <button class="btn" type="button" data-copy="2026-02-20">Copy</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="card pad">
+        <div class="widget-title">
+          <h3 id="aboutTitle">About</h3>
+          <span id="aboutSub">Overview</span>
+        </div>
+        <p id="aboutText" style="margin:0;color:var(--muted);line-height:1.8;">
+          This page is designed as a mini portfolio / profile hub. You can customize sections like skills and projects,
+          or remove them if you only want contact links. The layout supports English and Arabic (RTL) with one click.
+        </p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="card pad">
+        <div class="widget-title">
+          <h3 id="skillsTitle">Skills</h3>
+          <span id="skillsSub">Customizable</span>
+        </div>
+
+        <div class="skills" id="skillsGrid">
+          <div class="skill">
+            <div class="top"><span id="sk1">Communication</span><span class="mono">90%</span></div>
+            <div class="bar"><div class="fill" style="width:90%"></div></div>
+          </div>
+          <div class="skill">
+            <div class="top"><span id="sk2">Design</span><span class="mono">75%</span></div>
+            <div class="bar"><div class="fill" style="width:75%"></div></div>
+          </div>
+          <div class="skill">
+            <div class="top"><span id="sk3">Security Awareness</span><span class="mono">70%</span></div>
+            <div class="bar"><div class="fill" style="width:70%"></div></div>
+          </div>
+          <div class="skill">
+            <div class="top"><span id="sk4">Problem Solving</span><span class="mono">85%</span></div>
+            <div class="bar"><div class="fill" style="width:85%"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="card pad">
+        <div class="widget-title">
+          <h3 id="projectsTitle">Projects</h3>
+          <span id="projectsSub">Examples</span>
+        </div>
+
+        <div class="projects">
+          <div class="project">
+            <h4 id="p1t">Telegram Hub Page</h4>
+            <p id="p1d">A clean link hub that points to profile + channel, with copy buttons and analytics-ready structure.</p>
+            <div class="tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+            </div>
+          </div>
+          <div class="project">
+            <h4 id="p2t">Dark/Light UI</h4>
+            <p id="p2d">Theme toggle with stored preference, glass cards, and animated gradients.</p>
+            <div class="tags">
+              <span class="tag">UI</span><span class="tag">UX</span><span class="tag">Theme</span>
+            </div>
+          </div>
+          <div class="project">
+            <h4 id="p3t">EN/AR Toggle</h4>
+            <p id="p3d">One-page bilingual mode switching + RTL support for Arabic layout.</p>
+            <div class="tags">
+              <span class="tag">i18n</span><span class="tag">RTL</span><span class="tag">Accessibility</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="card pad">
+        <div class="widget-title">
+          <h3 id="contactTitle">Contact</h3>
+          <span id="contactSub">Quick actions</span>
+        </div>
+
+        <div class="contact-row">
+          <a class="btn primary" href="https://t.me/FFFF_6" target="_blank" rel="noopener" id="contactTelegram">Open Telegram</a>
+          <a class="btn" href="https://t.me/AnyDesiry" target="_blank" rel="noopener" id="contactChannel">Open Channel</a>
+          <button class="btn" type="button" data-copy="https://t.me/FFFF_6">Copy Telegram link</button>
+          <button class="btn" type="button" data-copy="https://t.me/AnyDesiry">Copy Channel link</button>
+        </div>
+
+        <div style="margin-top:14px; display:grid; gap:10px;">
+          <input class="input" id="msgSubject" placeholder="Subject (optional)" />
+          <textarea class="input" id="msgBody" placeholder="Write a message here, then click 'Open Telegram with text'..."></textarea>
+          <div class="contact-row">
+            <button class="btn primary" type="button" id="openTelegramWithText">Open Telegram with text</button>
+            <button class="btn" type="button" id="clearMessage">Clear</button>
+          </div>
+          <p style="margin:0;color:var(--muted2);font-size:12px;line-height:1.6" id="contactNote">
+            Note: This uses a t.me link to open Telegram. On some devices, pre-filled text may not be supported.
+          </p>
+        </div>
+      </div>
+    </section>
 
     <footer>
-        <p>&copy; 2026 فلان الفلاني. جميع الحقوق محفوظة.</p>
+      <div id="footerText">© 2026 Abn Mazin • Built as a single HTML file</div>
     </footer>
+  </main>
 
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <div class="t" id="toastTitle">Copied</div>
+    <div class="s" id="toastSub">Text copied to clipboard</div>
+  </div>
+
+  <script>
+    // ============ Helpers ============
+    const $ = (q, root=document) => root.querySelector(q);
+    const toast = $("#toast");
+    const toastTitle = $("#toastTitle");
+    const toastSub = $("#toastSub");
+
+    function showToast(title, sub){
+      toastTitle.textContent = title || "Done";
+      toastSub.textContent = sub || "";
+      toast.classList.add("show");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=> toast.classList.remove("show"), 1500);
+    }
+
+    async function copyText(txt){
+      try{
+        await navigator.clipboard.writeText(txt);
+        showToast("Copied", txt);
+      }catch(e){
+        // fallback
+        const ta = document.createElement("textarea");
+        ta.value = txt;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        showToast("Copied", txt);
+      }
+    }
+
+    // Copy buttons
+    document.addEventListener("click", (e)=>{
+      const btn = e.target.closest("[data-copy]");
+      if(!btn) return;
+      copyText(btn.getAttribute("data-copy"));
+    });
+
+    $("#btnCopyAll").addEventListener("click", ()=>{
+      const all = "Abn Mazin\nTelegram: @FFFF_6\nTelegram Channel: @AnyDesiry\nDate: 2026-02-20";
+      copyText(all);
+    });
+
+    // ============ Theme Toggle (persist) ============
+    const THEME_KEY = "abn_theme";
+    const root = document.documentElement;
+    function setTheme(t){
+      if(t === "light") root.setAttribute("data-theme","light");
+      else root.removeAttribute("data-theme");
+      localStorage.setItem(THEME_KEY, t);
+      showToast("Theme", t === "light" ? "Light mode" : "Dark mode");
+    }
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    if(savedTheme) setTheme(savedTheme);
+
+    $("#toggleTheme").addEventListener("click", ()=>{
+      const isLight = root.getAttribute("data-theme") === "light";
+      setTheme(isLight ? "dark" : "light");
+    });
+
+    // ============ Language Toggle EN/AR (persist) ============
+    const LANG_KEY = "abn_lang";
+    let lang = localStorage.getItem(LANG_KEY) || "en";
+
+    const dict = {
+      en: {
+        dir:"ltr",
+        brandSub:"Telegram profile & links",
+        navAbout:"About", navSkills:"Skills", navProjects:"Projects", navContact:"Contact",
+        heroDesc:"A high‑contrast, modern profile page with interactive sections, quick actions, and polished visuals. Use the buttons to open Telegram, copy usernames, and switch language/theme.",
+        badge1:"Online presence", badge2:"Fast contact", badge3:"Single‑file",
+        btnMessage:"Message @FFFF_6", btnChannel:"Open @AnyDesiry",
+        quickTitle:"Quick Info", quickHint:"Tap to copy",
+        kName:"Name", kUser:"Telegram", kChan:"Telegram Channel", kUpdated:"Updated",
+        aboutTitle:"About", aboutSub:"Overview",
+        aboutText:"This page is designed as a mini portfolio / profile hub. You can customize sections like skills and projects, or remove them if you only want contact links. The layout supports English and Arabic (RTL) with one click.",
+        skillsTitle:"Skills", skillsSub:"Customizable",
+        sk1:"Communication", sk2:"Design", sk3:"Security Awareness", sk4:"Problem Solving",
+        projectsTitle:"Projects", projectsSub:"Examples",
+        p1t:"Telegram Hub Page", p1d:"A clean link hub that points to profile + channel, with copy buttons and analytics-ready structure.",
+        p2t:"Dark/Light UI", p2d:"Theme toggle with stored preference, glass cards, and animated gradients.",
+        p3t:"EN/AR Toggle", p3d:"One-page bilingual mode switching + RTL support for Arabic layout.",
+        contactTitle:"Contact", contactSub:"Quick actions",
+        contactTelegram:"Open Telegram", contactChannel:"Open Channel",
+        contactNote:"Note: This uses a t.me link to open Telegram. On some devices, pre-filled text may not be supported.",
+        footerText:"© 2026 Abn Mazin • Built as a single HTML file",
+      },
+      ar: {
+        dir:"rtl",
+        brandSub:"حساب تيليجرام وروابط",
+        navAbout:"نبذة", navSkills:"مهارات", navProjects:"أعمال", navContact:"تواصل",
+        heroDesc:"صفحة شخصية حديثة بتصميم قوي وأقسام تفاعلية وروابط سريعة. استخدم الأزرار لفتح تيليجرام ونسخ المعرفات وتغيير اللغة/الثيم.",
+        badge1:"حضور رقمي", badge2:"تواصل سريع", badge3:"ملف واحد",
+        btnMessage:"مراسلة @FFFF_6", btnChannel:"فتح @AnyDesiry",
+        quickTitle:"معلومات سريعة", quickHint:"اضغط للنسخ",
+        kName:"الاسم", kUser:"تيليجرام", kChan:"قناة تيليجرام", kUpdated:"آخر تحديث",
+        aboutTitle:"نبذة", aboutSub:"ملخص",
+        aboutText:"هذه الصفحة مصممة كصفحة تعريف/روابط. يمكنك تعديل قسم المهارات والأعمال أو حذفها إذا تريد فقط روابط التواصل. تدعم الإنجليزية والعربية (RTL) بضغطة واحدة.",
+        skillsTitle:"المهارات", skillsSub:"قابل للتعديل",
+        sk1:"التواصل", sk2:"التصميم", sk3:"الوعي الأمني", sk4:"حل المشكلات",
+        projectsTitle:"الأعمال", projectsSub:"أمثلة",
+        p1t:"صفحة روابط تيليجرام", p1d:"صفحة نظيفة تحتوي رابط الحساب والقناة مع أزرار نسخ وهيكل جاهز للتطوير.",
+        p2t:"مظهر ليلي/نهاري", p2d:"تبديل الثيم مع حفظ التفضيل وتصميم زجاجي وخلفيات متحركة.",
+        p3t:"تبديل عربي/إنجليزي", p3d:"تبديل لغة في نفس الصفحة مع دعم اتجاه RTL.",
+        contactTitle:"تواصل", contactSub:"إجراءات سريعة",
+        contactTelegram:"فتح تيليجرام", contactChannel:"فتح القناة",
+        contactNote:"ملاحظة: يتم فتح تيليجرام عبر رابط t.me. بعض الأجهزة قد لا تدعم النص المعبأ مسبقًا.",
+        footerText:"© 2026 ابن مازن • صفحة بملف HTML واحد",
+      }
+    };
+
+    function applyLang(l){
+      lang = l;
+      localStorage.setItem(LANG_KEY, l);
+
+      const t = dict[l];
+      document.documentElement.lang = (l === "ar") ? "ar" : "en";
+      document.documentElement.dir = t.dir;
+
+      $("#brandSub").textContent = t.brandSub;
+      $("#navAbout").textContent = t.navAbout;
+      $("#navSkills").textContent = t.navSkills;
+      $("#navProjects").textContent = t.navProjects;
+      $("#navContact").textContent = t.navContact;
+
+      $("#heroDesc").textContent = t.heroDesc;
+      $("#badge1").textContent = t.badge1;
+      $("#badge2").textContent = t.badge2;
+      $("#badge3").textContent = t.badge3;
+
+      $("#btnMessage").textContent = t.btnMessage;
+      $("#btnChannel").textContent = t.btnChannel;
+
+      $("#quickTitle").textContent = t.quickTitle;
+      $("#quickHint").textContent = t.quickHint;
+
+      $("#kName").textContent = t.kName;
+      $("#kUser").textContent = t.kUser;
+      $("#kChan").textContent = t.kChan;
+      $("#kUpdated").textContent = t.kUpdated;
+
+      $("#aboutTitle").textContent = t.aboutTitle;
+      $("#aboutSub").textContent = t.aboutSub;
+      $("#aboutText").textContent = t.aboutText;
+
+      $("#skillsTitle").textContent = t.skillsTitle;
+      $("#skillsSub").textContent = t.skillsSub;
+      $("#sk1").textContent = t.sk1;
+      $("#sk2").textContent = t.sk2;
+      $("#sk3").textContent = t.sk3;
+      $("#sk4").textContent = t.sk4;
+
+      $("#projectsTitle").textContent = t.projectsTitle;
+      $("#projectsSub").textContent = t.projectsSub;
+      $("#p1t").textContent = t.p1t;
+      $("#p1d").textContent = t.p1d;
+      $("#p2t").textContent = t.p2t;
+      $("#p2d").textContent = t.p2d;
+      $("#p3t").textContent = t.p3t;
+      $("#p3d").textContent = t.p3d;
+
+      $("#contactTitle").textContent = t.contactTitle;
+      $("#contactSub").textContent = t.contactSub;
+      $("#contactTelegram").textContent = t.contactTelegram;
+      $("#contactChannel").textContent = t.contactChannel;
+      $("#contactNote").textContent = t.contactNote;
+
+      $("#footerText").textContent = t.footerText;
+
+      showToast("Language", l === "ar" ? "Arabic (RTL)" : "English (LTR)");
+    }
+
+    applyLang(lang);
+    $("#toggleLang").addEventListener("click", ()=> applyLang(lang === "en" ? "ar" : "en"));
+
+    // ============ Telegram with prefilled text ============
+    function buildTelegramLinkWithText(username, subject, body){
+      const text = [subject, body].filter(Boolean).join(" — ").trim();
+      // Not all clients support text prefill from t.me links, but we try:
+      const base = `https://t.me/${encodeURIComponent(username.replace("@",""))}`;
+      if(!text) return base;
+      return base + `?text=${encodeURIComponent(text)}`;
+    }
+
+    $("#openTelegramWithText").addEventListener("click", ()=>{
+      const subject = $("#msgSubject").value.trim();
+      const body = $("#msgBody").value.trim();
+      const url = buildTelegramLinkWithText("@FFFF_6", subject, body);
+      window.open(url, "_blank", "noopener");
+    });
+
+    $("#clearMessage").addEventListener("click", ()=>{
+      $("#msgSubject").value = "";
+      $("#msgBody").value = "";
+      showToast("Cleared", "Message removed");
+    });
+  </script>
 </body>
 </html>
