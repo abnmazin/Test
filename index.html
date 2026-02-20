@@ -3,153 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حاسبة المولد التزامني</title>
+    <title>موقعي الشخصي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        * { font-family: system-ui, sans-serif; box-sizing: border-box; }
-        body { background: #f0f4f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 15px; }
-        .calculator { max-width: 800px; width: 100%; background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        h1 { color: #1e40af; font-size: 24px; margin: 0 0 20px 0; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
-        .input-group { display: flex; flex-direction: column; gap: 5px; }
-        .input-group label { font-weight: 600; color: #374151; font-size: 14px; }
-        .input-group input, .input-group select { padding: 10px; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 16px; }
-        .input-group input:focus, .input-group select:focus { border-color: #3b82f6; outline: none; }
-        button { background: #3b82f6; color: white; border: none; padding: 12px 30px; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; margin: 20px 0; transition: background 0.3s; }
-        button:hover { background: #1d4ed8; }
-        .results { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .result-card { background: #f8fafc; padding: 15px; border-radius: 12px; text-align: center; border: 1px solid #e2e8f0; }
-        .result-card .label { color: #64748b; font-size: 13px; margin-bottom: 5px; }
-        .result-card .value { color: #0f172a; font-size: 20px; font-weight: bold; }
-        .result-card .value.blue { color: #2563eb; }
-        .result-card .value.purple { color: #7c3aed; }
-        .info { background: #dbeafe; padding: 15px; border-radius: 12px; margin: 20px 0; color: #1e40af; font-size: 14px; }
+        /* إعدادات عامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* تنسيق الواجهة الرئيسية (Hero Section) */
+        .hero {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #ecf0f1;
+        }
+
+        /* تنسيق قسم المحتوى والتواصل */
+        .container {
+            max-width: 1000px;
+            margin: -40px auto 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        /* شبكة معلومات التواصل */
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .contact-card {
+            flex: 1 1 300px;
+            background: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: #3498db;
+        }
+
+        .contact-card h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .contact-card a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .contact-card a:hover {
+            color: #e74c3c;
+        }
+
+        /* تنسيق التذييل */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            margin-top: auto;
+        }
+
+        /* التجاوب مع الشاشات الصغيرة (الهواتف) */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            .contact-card {
+                flex: 1 1 100%;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="calculator">
-        <h1>⚡ حاسبة المولد التزامني</h1>
-        
-        <!-- المدخلات -->
-        <div class="grid">
-            <div class="input-group">
-                <label>S (kVA)</label>
-                <input type="number" id="s" value="500">
+
+    <header class="hero">
+        <h1>فلان الفلاني</h1>
+        <p>مرحباً بك في موقعي الشخصي. أنا مهتم بمجال [اكتب مجالك هنا، مثلاً: تطوير الويب / التصميم / الكتابة] وأسعى دائماً لتقديم الأفضل.</p>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">معلومات التواصل</h2>
+        <div class="contact-grid">
+            
+            <div class="contact-card">
+                <h3>البريد الإلكتروني</h3>
+                <p><a href="mailto:your.email@example.com">your.email@example.com</a></p>
             </div>
-            <div class="input-group">
-                <label>Vline (V)</label>
-                <input type="number" id="v" value="3300">
+
+            <div class="contact-card">
+                <h3>رقم الهاتف</h3>
+                <p><a href="tel:+964123456789">+964 123 456 789</a></p>
             </div>
-            <div class="input-group">
-                <label>Ra (Ω)</label>
-                <input type="number" id="ra" step="0.1" value="0.3">
+
+            <div class="contact-card">
+                <h3>حساباتي المهنية</h3>
+                <p><a href="#" target="_blank">رابط حسابي على LinkedIn</a></p>
             </div>
-            <div class="input-group">
-                <label>Xs (Ω)</label>
-                <input type="number" id="xs" step="0.1" value="4.0">
-            </div>
-            <div class="input-group">
-                <label>P.F</label>
-                <input type="number" id="pf" step="0.1" min="0" max="1" value="0.8">
-            </div>
-            <div class="input-group">
-                <label>النوع</label>
-                <select id="type">
-                    <option value="lagging">Lagging (حثي)</option>
-                    <option value="leading">Leading (سعوي)</option>
-                </select>
-            </div>
+
         </div>
+    </main>
 
-        <button onclick="calculate()">احسب</button>
+    <footer>
+        <p>&copy; 2026 فلان الفلاني. جميع الحقوق محفوظة.</p>
+    </footer>
 
-        <!-- النتائج -->
-        <div class="results" id="results">
-            <div class="result-card">
-                <div class="label">تيار الحمل (Ia)</div>
-                <div class="value" id="ia">-</div>
-            </div>
-            <div class="result-card">
-                <div class="label">Vph (طور)</div>
-                <div class="value blue" id="vph">-</div>
-            </div>
-            <div class="result-card">
-                <div class="label">Eph (طور)</div>
-                <div class="value purple" id="eph">-</div>
-            </div>
-            <div class="result-card">
-                <div class="label">Eline (خط)</div>
-                <div class="value" id="eline">-</div>
-            </div>
-            <div class="result-card">
-                <div class="label">IaRa (هبوط)</div>
-                <div class="value" id="iara">-</div>
-            </div>
-            <div class="result-card">
-                <div class="label">IaXs (هبوط)</div>
-                <div class="value" id="iaxs">-</div>
-            </div>
-            <div class="result-card">
-                <div class="label">زاوية الحمل (δ)</div>
-                <div class="value" id="delta">-</div>
-            </div>
-            <div class="result-card">
-                <div class="label">تنظيم الجهد (VR)</div>
-                <div class="value" id="vr">-</div>
-            </div>
-        </div>
-
-        <div class="info" id="info">
-            أدخل القيم واضغط "احسب" لعرض النتائج
-        </div>
-    </div>
-
-    <script>
-        function calculate() {
-            // قراءة القيم
-            const s = parseFloat(document.getElementById('s').value) || 500;
-            const v = parseFloat(document.getElementById('v').value) || 3300;
-            const ra = parseFloat(document.getElementById('ra').value) || 0.3;
-            const xs = parseFloat(document.getElementById('xs').value) || 4.0;
-            const pf = parseFloat(document.getElementById('pf').value) || 0.8;
-            const type = document.getElementById('type').value;
-
-            // الحسابات
-            const vPh = v / Math.sqrt(3);
-            const ia = (s * 1000) / (Math.sqrt(3) * v);
-            const phi = Math.acos(pf);
-            
-            // الزاوية حسب النوع
-            const iaAngle = type === 'lagging' ? -phi : phi;
-            
-            // المركبات
-            const iReal = ia * Math.cos(iaAngle);
-            const iImag = ia * Math.sin(iaAngle);
-            
-            // حساب E
-            const eReal = vPh + (iReal * ra) - (iImag * xs);
-            const eImag = (iImag * ra) + (iReal * xs);
-            
-            const eph = Math.sqrt(eReal * eReal + eImag * eImag);
-            const eline = eph * Math.sqrt(3);
-            const delta = Math.atan2(eImag, eReal) * (180 / Math.PI);
-            const vr = ((eph - vPh) / vPh) * 100;
-
-            // عرض النتائج
-            document.getElementById('ia').textContent = ia.toFixed(2) + ' A';
-            document.getElementById('vph').textContent = vPh.toFixed(1) + ' V';
-            document.getElementById('eph').textContent = eph.toFixed(1) + ' V';
-            document.getElementById('eline').textContent = eline.toFixed(1) + ' V';
-            document.getElementById('iara').textContent = (ia * ra).toFixed(2) + ' V';
-            document.getElementById('iaxs').textContent = (ia * xs).toFixed(2) + ' V';
-            document.getElementById('delta').textContent = delta.toFixed(2) + '°';
-            document.getElementById('vr').textContent = vr.toFixed(2) + '%';
-            
-            let typeText = type === 'lagging' ? 'متأخر (حثي)' : 'متقدم (سعوي)';
-            document.getElementById('info').innerHTML = `✅ تم الحساب - عامل القدرة ${typeText} بزاوية ${(phi * 180 / Math.PI).toFixed(2)}°`;
-        }
-
-        // تشغيل الحساب أول مرة
-        calculate();
-    </script>
 </body>
 </html>
