@@ -1,0 +1,12 @@
+{
+  "name": "alternator-calculator",
+  "version": "1.0.0",
+  "description": "حاسبة ومخطط المولد التزامني مع رسم المتجهات",
+  "main": "app.js",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": ["alternator", "phasor", "calculator", "arabic"],
+  "author": "",
+  "license": "MIT"
+}
