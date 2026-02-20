@@ -1,171 +1,383 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!doctype html>
+<html lang="en" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قسم الرياضيات</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        body {
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            color: #ecf0f1;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: -40px auto 50px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
-
-        .placeholder-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 40px;
-        }
-
-        .placeholder-card {
-            flex: 1 1 280px;
-            background: #f9f9f9;
-            padding: 20px;
-            text-align: center;
-            border-radius: 8px;
-            border: 1px solid #eee;
-            transition: transform 0.3s ease;
-        }
-
-        .placeholder-card:hover {
-            transform: translateY(-5px);
-            border-color: #3498db;
-        }
-
-        .placeholder-card h3 {
-            color: #3498db;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-
-        .placeholder-card p {
-            color: #777;
-            font-size: 0.95rem;
-        }
-
-        .back-btn {
-            display: block;
-            width: fit-content;
-            margin: 0 auto;
-            padding: 12px 35px;
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .back-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #2c3e50;
-            color: white;
-            margin-top: auto;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 60px 20px;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .container {
-                margin: 20px;
-                padding: 20px;
-            }
-            .placeholder-card {
-                flex: 1 1 100%;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alternator Calculator + Phasor Diagram</title>
+  <style>
+    :root{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --border:#e5e7eb;
+      --text:#111827;
+      --muted:#6b7280;
+      --blue:#2563eb;
+      --green:#16a34a;
+      --orange:#f97316;
+      --red:#dc2626;
+      --purple:#9333ea;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    header{background:#1d4ed8;color:#fff;padding:18px 16px}
+    header .wrap{max-width:1100px;margin:0 auto;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    header h1{margin:0;font-size:20px}
+    header .sub{opacity:.9;font-size:13px}
+    main{max-width:1100px;margin:0 auto;padding:16px;display:grid;grid-template-columns:1fr;gap:16px}
+    @media(min-width:980px){ main{grid-template-columns:380px 1fr;align-items:start} }
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+    .card .hd{padding:14px 16px;border-bottom:1px solid var(--border);font-weight:700}
+    .card .bd{padding:14px 16px}
+    label{display:block;font-size:13px;color:#374151;margin-bottom:6px}
+    input,select,button{width:100%;padding:10px 10px;border:1px solid #d1d5db;border-radius:10px;font-size:14px}
+    input:focus,select:focus{outline:2px solid rgba(37,99,235,.25);border-color:rgba(37,99,235,.6)}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .btn{background:#2563eb;color:#fff;border:none;font-weight:700;cursor:pointer}
+    .btn:hover{background:#1d4ed8}
+    .note{background:#eff6ff;border:1px solid #dbeafe;color:#1e40af;padding:12px;border-radius:12px;font-size:13px}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media(min-width:720px){ .stats{grid-template-columns:repeat(4,1fr)} }
+    .stat{padding:12px;border:1px solid var(--border);border-radius:14px;background:#fff;text-align:center}
+    .stat .k{font-size:11px;color:var(--muted);font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+    .stat .v{margin-top:6px;font-size:18px;font-weight:800}
+    .tableRow{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--border)}
+    @media(min-width:720px){ .tableRow{grid-template-columns:repeat(4,1fr)} }
+    .cell{padding:12px;text-align:center;border-left:1px solid #f3f4f6}
+    .cell:first-child{border-left:none}
+    .cell .k{display:block;color:var(--muted);font-size:13px}
+    .cell .v{font-weight:800;margin-top:6px}
+    .canvasWrap{padding:0}
+    .legend{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:#374151}
+    .dot{width:10px;height:10px;border-radius:999px;display:inline-block;margin-left:6px}
+    canvas{display:block;width:100%;height:420px;background:#f8fafc;border-bottom-left-radius:14px;border-bottom-right-radius:14px}
+    .small{font-size:12px;color:var(--muted)}
+  </style>
 </head>
+
 <body>
+<header>
+  <div class="wrap">
+    <h1>حاسبة ومخطط المولد التزامني (Alternator)</h1>
+    <div class="sub">Phasor analysis for lagging / leading power factor</div>
+  </div>
+</header>
 
-    <header class="hero">
-        <h1>قسم الرياضيات</h1>
-        <p>استكشف مواضيع الرياضيات المتنوعة من الجبر والهندسة إلى التفاضل والتكامل والإحصاء.</p>
-    </header>
-
-    <main class="container">
-        <h2 class="section-title">الدروس والمحتوى</h2>
-        <div class="placeholder-grid">
-
-            <div class="placeholder-card">
-                <h3>الجبر</h3>
-                <p>دروس وشروحات في الجبر الأساسي والمتقدم. قريباً...</p>
-            </div>
-
-            <div class="placeholder-card">
-                <h3>الهندسة</h3>
-                <p>مسائل وحلول في الهندسة الإقليدية والفراغية. قريباً...</p>
-            </div>
-
-            <div class="placeholder-card">
-                <h3>التفاضل والتكامل</h3>
-                <p>شرح مفاهيم الحساب التفاضلي والتكاملي بأسلوب مبسط. قريباً...</p>
-            </div>
-
+<main>
+  <!-- Inputs -->
+  <section class="card">
+    <div class="hd">المعطيات (Input Data)</div>
+    <div class="bd">
+      <div style="display:grid;gap:10px">
+        <div>
+          <label>القدرة الظاهرة S (kVA)</label>
+          <input id="sRated" type="number" value="500" />
         </div>
 
-        <a href="/" class="back-btn">العودة إلى الصفحة الرئيسية</a>
-    </main>
+        <div>
+          <label>جهد الخط Vline (Volts)</label>
+          <input id="vLine" type="number" value="3300" />
+        </div>
 
-    <footer>
-        <p>&copy; 2026 فلان الفلاني. جميع الحقوق محفوظة.</p>
-    </footer>
+        <div class="grid2">
+          <div>
+            <label>المقاومة Ra (Ω)</label>
+            <input id="ra" type="number" step="0.1" value="0.3" />
+          </div>
+          <div>
+            <label>المفاعلة Xs (Ω)</label>
+            <input id="xs" type="number" step="0.1" value="4.0" />
+          </div>
+        </div>
 
+        <div class="grid2">
+          <div>
+            <label>عامل القدرة P.F</label>
+            <input id="pf" type="number" step="0.01" min="0" max="1" value="0.8" />
+          </div>
+          <div>
+            <label>الحالة</label>
+            <select id="pfType">
+              <option value="lagging" selected>Lagging (حثي)</option>
+              <option value="leading">Leading (سعوي)</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn" id="recalc">Recalculate / أعد الحساب</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results + Canvas -->
+  <section style="display:grid;gap:16px">
+    <div class="note">
+      <strong>Note:</strong> Star connection assumed (line current = phase current).
+    </div>
+
+    <div id="stats" class="stats"></div>
+
+    <div class="card">
+      <div class="hd">Details</div>
+      <div class="tableRow" id="details"></div>
+    </div>
+
+    <div class="card canvasWrap">
+      <div class="hd" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div>مخطط الطور (Phasor Diagram)</div>
+        <div class="legend">
+          <span><span class="dot" style="background:var(--blue)"></span>Vph</span>
+          <span><span class="dot" style="background:var(--green)"></span>Ia</span>
+          <span><span class="dot" style="background:var(--orange)"></span>IaRa</span>
+          <span><span class="dot" style="background:var(--red)"></span>IaXs</span>
+          <span><span class="dot" style="background:var(--purple)"></span>E0</span>
+        </div>
+      </div>
+      <canvas id="canvas" width="1000" height="420"></canvas>
+      <div style="padding:10px 16px" class="small">* Drawing is auto-scaled for clarity.</div>
+    </div>
+  </section>
+</main>
+
+<script>
+  const SCALE_PADDING = 40;
+
+  const $ = (id) => document.getElementById(id);
+
+  const el = {
+    sRated: $("sRated"),
+    vLine: $("vLine"),
+    ra: $("ra"),
+    xs: $("xs"),
+    pf: $("pf"),
+    pfType: $("pfType"),
+    recalc: $("recalc"),
+    stats: $("stats"),
+    details: $("details"),
+    canvas: $("canvas")
+  };
+
+  function num(v, fallback=0){
+    const n = Number(v);
+    return Number.isFinite(n) ? n : fallback;
+  }
+
+  function calculate(){
+    const sRated = num(el.sRated.value, 500); // kVA
+    const vLine  = num(el.vLine.value, 3300); // V
+    const ra     = num(el.ra.value, 0.3); // ohm
+    const xs     = num(el.xs.value, 4.0); // ohm
+    let pf       = num(el.pf.value, 0.8);
+    const pfType = el.pfType.value;
+
+    // clamp pf
+    pf = Math.min(1, Math.max(0, pf));
+
+    // Vph = VL / sqrt(3)
+    const vPh = vLine / Math.sqrt(3);
+
+    // Ia = S*1000 / (sqrt(3)*VL)
+    const ia = (sRated * 1000) / (Math.sqrt(3) * vLine);
+
+    // phi
+    const phiRad = Math.acos(pf);
+    const phiDeg = phiRad * (180 / Math.PI);
+
+    // drops (magnitudes)
+    const dropRa = ia * ra;
+    const dropXs = ia * xs;
+
+    // current angle
+    const iaAngleRad = pfType === "lagging" ? -phiRad : phiRad;
+
+    // I components
+    const iReal = ia * Math.cos(iaAngleRad);
+    const iImag = ia * Math.sin(iaAngleRad);
+
+    // E = V + I(Ra + jXs)
+    const eReal = vPh + (iReal * ra) - (iImag * xs);
+    const eImag = 0   + (iImag * ra) + (iReal * xs);
+
+    const ePh = Math.hypot(eReal, eImag);
+    const eLine = ePh * Math.sqrt(3);
+    const loadAngleRad = Math.atan2(eImag, eReal);
+    const loadAngleDeg = loadAngleRad * (180 / Math.PI);
+
+    const regulation = ((ePh - vPh) / vPh) * 100;
+
+    return {
+      vPh, ia, phiDeg, dropRa, dropXs, ePh, eLine, loadAngleDeg, regulation,
+      vectors: {
+        v:   { x: vPh, y: 0 },
+        i:   { mag: ia, angle: iaAngleRad },
+        iRa: { x: iReal * ra, y: iImag * ra },
+        iXs: { x: -iImag * xs, y: iReal * xs },
+        e:   { x: eReal, y: eImag }
+      }
+    };
+  }
+
+  function renderNumbers(r){
+    el.stats.innerHTML = `
+      <div class="stat">
+        <div class="k">Ia (Load Current)</div>
+        <div class="v">${r.ia.toFixed(2)} A</div>
+      </div>
+      <div class="stat">
+        <div class="k">Vph (Phase Voltage)</div>
+        <div class="v" style="color:var(--blue)">${r.vPh.toFixed(1)} V</div>
+      </div>
+      <div class="stat" style="outline:2px solid rgba(147,51,234,.12)">
+        <div class="k">Eph</div>
+        <div class="v" style="color:var(--purple);font-size:20px">${r.ePh.toFixed(1)} V</div>
+      </div>
+      <div class="stat">
+        <div class="k">Eline</div>
+        <div class="v">${r.eLine.toFixed(1)} V</div>
+      </div>
+    `;
+
+    el.details.innerHTML = `
+      <div class="cell">
+        <span class="k">IaRa</span>
+        <div class="v" style="color:var(--orange)">${r.dropRa.toFixed(2)} V</div>
+      </div>
+      <div class="cell">
+        <span class="k">IaXs</span>
+        <div class="v" style="color:var(--red)">${r.dropXs.toFixed(2)} V</div>
+      </div>
+      <div class="cell">
+        <span class="k">δ (Load angle)</span>
+        <div class="v">${r.loadAngleDeg.toFixed(2)}°</div>
+      </div>
+      <div class="cell">
+        <span class="k">Voltage Regulation</span>
+        <div class="v">${r.regulation.toFixed(2)}%</div>
+      </div>
+    `;
+  }
+
+  function drawPhasor(r){
+    const canvas = el.canvas;
+    const ctx = canvas.getContext("2d");
+    const width = canvas.width;
+    const height = canvas.height;
+
+    // background
+    ctx.clearRect(0,0,width,height);
+    ctx.fillStyle = "#f8fafc";
+    ctx.fillRect(0,0,width,height);
+
+    // points for autoscale
+    const points = [
+      {x:0,y:0},
+      {x:r.vectors.v.x, y:r.vectors.v.y},
+      {x:r.vectors.v.x + r.vectors.iRa.x, y:r.vectors.v.y + r.vectors.iRa.y},
+      {x:r.vectors.e.x, y:r.vectors.e.y},
+    ];
+
+    let minX=0,maxX=0,minY=0,maxY=0;
+    for(const p of points){
+      minX = Math.min(minX, p.x);
+      maxX = Math.max(maxX, p.x);
+      minY = Math.min(minY, p.y);
+      maxY = Math.max(maxY, p.y);
+    }
+
+    const rangeX = (maxX - minX) || 1;
+    const rangeY = (maxY - minY) || 1;
+
+    const scaleX = (width  - 2*SCALE_PADDING) / rangeX;
+    const scaleY = (height - 2*SCALE_PADDING) / rangeY;
+    const scale = Math.min(scaleX, scaleY);
+
+    const offsetX = (width  - rangeX*scale)/2 - minX*scale;
+    const offsetY = (height - rangeY*scale)/2 - minY*scale;
+
+    const toCanvas = (x,y) => ({
+      x: offsetX + x*scale,
+      y: height - (offsetY + y*scale) // flip y
+    });
+
+    // subtle axes
+    ctx.strokeStyle = "#e2e8f0";
+    ctx.lineWidth = 1;
+    ctx.setLineDash([]);
+    ctx.beginPath();
+    ctx.moveTo(0, height/2); ctx.lineTo(width, height/2);
+    ctx.moveTo(width/2, 0);  ctx.lineTo(width/2, height);
+    ctx.stroke();
+
+    function drawArrow(from, to, color, label, dashed=false){
+      const headLength = 10;
+      const ang = Math.atan2(to.y-from.y, to.x-from.x);
+
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.setLineDash(dashed ? [5,5] : []);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // head
+      ctx.beginPath();
+      ctx.moveTo(to.x, to.y);
+      ctx.lineTo(to.x - headLength*Math.cos(ang - Math.PI/6), to.y - headLength*Math.sin(ang - Math.PI/6));
+      ctx.lineTo(to.x - headLength*Math.cos(ang + Math.PI/6), to.y - headLength*Math.sin(ang + Math.PI/6));
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+
+      if(label){
+        ctx.fillStyle = color;
+        ctx.font = "bold 14px sans-serif";
+        ctx.fillText(label, (from.x+to.x)/2, (from.y+to.y)/2 - 10);
+      }
+    }
+
+    const origin = toCanvas(0,0);
+    const vTip = toCanvas(r.vectors.v.x, r.vectors.v.y);
+    const irTip = toCanvas(r.vectors.v.x + r.vectors.iRa.x, r.vectors.v.y + r.vectors.iRa.y);
+    const eTip = toCanvas(r.vectors.e.x, r.vectors.e.y);
+
+    // V
+    drawArrow(origin, vTip, "#2563eb", "Vph");
+
+    // I (visual scaling)
+    const iVisScale = (r.vPh * 0.4) / (r.ia || 1);
+    const iTip = toCanvas(
+      r.vectors.i.mag * Math.cos(r.vectors.i.angle) * iVisScale,
+      r.vectors.i.mag * Math.sin(r.vectors.i.angle) * iVisScale
+    );
+    drawArrow(origin, iTip, "#16a34a", "Ia");
+
+    // IRa
+    drawArrow(vTip, irTip, "#f97316", "IaRa");
+
+    // IXs (from IRa tip to E tip)
+    drawArrow(irTip, eTip, "#dc2626", "IaXs");
+
+    // E
+    drawArrow(origin, eTip, "#9333ea", "E0 (Eph)");
+  }
+
+  function recalcAndDraw(){
+    const r = calculate();
+    renderNumbers(r);
+    drawPhasor(r);
+  }
+
+  // events
+  ["input","change"].forEach(evt => {
+    [el.sRated, el.vLine, el.ra, el.xs, el.pf, el.pfType].forEach(node => {
+      node.addEventListener(evt, recalcAndDraw);
+    });
+  });
+  el.recalc.addEventListener("click", recalcAndDraw);
+
+  // first render
+  recalcAndDraw();
+</script>
 </body>
 </html>
